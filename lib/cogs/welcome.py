@@ -3,6 +3,7 @@ from datetime import datetime
 import nextcord
 from nextcord.ext.commands import Cog
 
+# TODO: Needs refactoring
 
 class Welcome(Cog):
 

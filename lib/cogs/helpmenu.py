@@ -5,6 +5,7 @@ from nextcord import Embed
 from nextcord.ext import menus
 from nextcord.ext.commands import Cog, command, cooldown, BucketType
 
+# TODO: needs refactoring & cleanup
 
 class buildHelpmenu(menus.ListPageSource):
     def __init__(self, data, thumbnail, botname):

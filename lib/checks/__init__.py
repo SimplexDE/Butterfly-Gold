@@ -4,6 +4,7 @@ STAFF = int(1030801510222807091)
 DEV = int(579111799794958377)
 BOT = int(1025533293636112404)
 
+# TODO: Cleanup & Refactor /// Come up with something similar
 
 def is_staff():
     async def predicate(ctx: Context) -> bool:

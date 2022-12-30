@@ -6,6 +6,7 @@ from loguru import logger as log
 from nextcord import Embed, HTTPException
 from nextcord.ext.commands import Cog, command
 
+# TODO: Cleanup
 
 class Dev(Cog):
 

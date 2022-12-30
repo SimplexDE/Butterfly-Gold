@@ -3,7 +3,8 @@ from nextcord.ext.commands import Cog
 
 global messagecache
 
-
+# TODO: Needs refactoring
+# TODO: Support for multiple servers
 class TempChannel(Cog):
 
     def __init__(self, bot):

@@ -10,11 +10,8 @@ from loguru import logger as log
 
 from nextcord.ext.commands import Cog, command, cooldown, BucketType
 
-# -old_ticketsystem.py
-#
-# This is the current ticket system we use for Plutocore.
-
 # TODO: Document this file.
+# TODO: Implement new database functions
 
 # generate_name is used for generation of ticket-channel names
 def generate_name(length):

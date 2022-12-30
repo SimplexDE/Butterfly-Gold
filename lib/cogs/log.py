@@ -5,8 +5,8 @@ from nextcord import Embed
 from nextcord.ext.commands import Cog
 
 
-# Still work in progress, but most of the events are in here now..
-
+# TODO: Support for Multiple Servers
+# TODO: needs refactoring
 def buildembed(title: str, description: str, colour: nextcord.Colour):
     return Embed(
         title=title,
@@ -25,7 +25,7 @@ class Log(Cog):
     @Cog.listener()
     async def on_ready(self):
         if not self.bot.ready:
-            self.log_channel = self.bot.get_channel(1031329859282141284)
+            self.log_channel = self.bot.get_channel(1058255931374305300)
             self.bot.cogs_ready.ready_up("log")
 
     @Cog.listener()
