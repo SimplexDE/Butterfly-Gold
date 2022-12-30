@@ -1,0 +1,13 @@
+
+# Custom
+
+*.db
+*.db-journal
+*.0
+*.json
+.env
+.idea/
+venv/
+__pycache__/
+lib/cogs/indev/*
+!/docker-compose.yml
