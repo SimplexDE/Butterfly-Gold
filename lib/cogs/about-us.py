@@ -4,8 +4,6 @@ import nextcord
 from nextcord import Interaction
 from nextcord.ext.commands import Cog
 
-from ..checks import GUILDS
-
 
 
 
@@ -14,13 +12,13 @@ class Buttons(nextcord.ui.View):
 	def __init__(self):
 		super().__init__(timeout=None)
 
-
-	@nextcord.ui.button(label="Join our Discord!", style=nextcord.ButtonStyle.grey, disabled=True,
-	                    emoji=bot.get_emoji(938203882662813766))
-	async def join_discord(self, interaction: Interaction):
-		await interaction.response.send_message()
-		Buttons().refresh()  # TODO
-
+#
+# @nextcord.ui.button(label="Join our Discord!", style=nextcord.ButtonStyle.grey, disabled=True,
+#                     emoji=)
+# async def join_discord(self, interaction: Interaction):
+# 	await interaction.response.send_message()
+# 	Buttons().refresh()  # TODO
+#
 
 
 
@@ -32,7 +30,7 @@ class About(Cog):
 
 	@nextcord.slash_command(name="about-us",
 	                        description="About Butterfly",
-	                        guild_ids=GUILDS,
+	                        # guild_ids=GUILDS,
 	                        name_localizations={"de": "über-uns"},
 	                        description_localizations={"de": "Über Butterfly [ENGLISCH]"},
 	                        force_global=True,

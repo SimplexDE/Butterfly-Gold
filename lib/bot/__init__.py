@@ -147,6 +147,8 @@ class Bot(BotBase):
 	async def on_application_command_error(self, interaction: Interaction, error):
 		if isinstance(error, errors.ApplicationCheckFailure):
 			pass
+		else:
+			raise error
 
 
 	async def on_ready(self):

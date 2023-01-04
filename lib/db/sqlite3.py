@@ -48,32 +48,32 @@ class SQLite3:
 			cursor.execute(f"INSERT INTO {table_name} ({','.join(columns)}) VALUES ({','.join(['?'] * len(values))});",
 			               values)
 
-
 	@staticmethod
 	def delete_from_table(db_name, table_name, columns, values):
 		"""
-		A helper function to delete a row from a table in the database.
+		A helper function to create a table in the database.
 		:param db_name: A *string* representing the name of the database.
 		:param table_name: A *string* representing the name of the table.
 		:param columns: A *dict* of column names and their types.
-		:param values: A *dict* of values.
+		:param values: A *dict* of column names and their values.
 		:return:
 		"""
 		with SQLite3(db_name) as cursor:
+			print(table_name, columns, values)
 			cursor.execute(f"DELETE FROM {table_name} WHERE {columns} = {values};")
 
 
 	@staticmethod
-	def select_from_table(db_name, table_name, columns, values):
+	def select_from_table(db_name, table_name, columns, values, where_columns):
 		with SQLite3(db_name) as cursor:
-			cursor.execute(f"SELECT {','.join(columns)} FROM {table_name} WHERE {columns} = {values};")
+			cursor.execute(f"SELECT {','.join(columns)} FROM {table_name} WHERE {where_columns} = {values};")
 			return cursor.fetchall()
 
 
 	@staticmethod
-	def update_from_table(db_name, table_name, columns, values, where_columns, where):
+	def update_from_table(db_name, table_name, columns, values, where_columns, where_values):
 		with SQLite3(db_name) as cursor:
-			cursor.execute(f"UPDATE {table_name} SET {columns} = {values} WHERE {where_columns} = {where};")
+			cursor.execute(f"UPDATE {table_name} SET {columns} = {values} WHERE {where_columns} = {where_values};")
 
 
 	@staticmethod

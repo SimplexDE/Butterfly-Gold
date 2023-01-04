@@ -6,7 +6,7 @@ from nextcord import Interaction, SlashOption
 from nextcord.ext.commands import Cog, ExtensionAlreadyLoaded, ExtensionFailed, ExtensionNotFound, \
 	ExtensionNotLoaded, NoEntryPointError
 
-from ..checks import GUILDS, is_bot_owner
+from ..checks import DEV_GUILDS, is_developer
 
 
 
@@ -25,15 +25,31 @@ class Dev(Cog):
 				COGS += [file[:-3]]
 
 
+	@nextcord.slash_command(name="reload-commands",
+	                        name_localizations={},
+	                        description="Reload all Slash-Commands",
+	                        description_localizations={},
+	                        guild_ids=DEV_GUILDS,
+	                        force_global=False,
+	                        dm_permission=False,
+	                        )
+	@is_developer()
+	async def reload_slash_commands(self, interaction: Interaction):
+		await interaction.response.send_message("Discovering commands, this might take a while...", ephemeral=True)
+		await self.bot.discover_application_commands()
+		await self.bot.sync_application_commands()
+		await interaction.followup.send("Done!", ephemeral=True)
+
+
 	@nextcord.slash_command(name="modulemanager",
 	                        name_localizations={"de": "modulverwaltung"},
 	                        description="Manage Modules",
 	                        description_localizations={"de": "Module verwalten"},
-	                        guild_ids=GUILDS,
+	                        guild_ids=DEV_GUILDS,
 	                        force_global=False,
 	                        dm_permission=False,
 	                        )
-	@is_bot_owner()
+	@is_developer()
 	async def module_manager(self, interaction: Interaction,
 	                         action: str = SlashOption(name="action",
 	                                                   name_localizations={"de": "aktion"},
@@ -88,7 +104,7 @@ class Dev(Cog):
 			finally:
 				if result is None:
 					result = "Complete."
-				if not error is None:
+				if error is not None:
 					log.exception(error)
 				if error is None:
 					error = "No errors occurred."
@@ -114,11 +130,10 @@ class Dev(Cog):
 			finally:
 				if result is None:
 					result = "Complete."
-				if not error is None:
+				if error is not None:
 					log.exception(error)
 				if error is None:
 					error = "No errors occurred."
-
 
 		elif action == "reload":
 			try:
@@ -141,7 +156,7 @@ class Dev(Cog):
 			finally:
 				if result is None:
 					result = "Action completed."
-				if not error is None:
+				if error is not None:
 					log.exception(error)
 				if error is None:
 					error = "No errors occurred."
